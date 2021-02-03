@@ -4,7 +4,7 @@ public class WalletConfig {
     private String appId;//必选
     private String userPrivateKey;//必选
     private String waasPublickKey;//必选
-    private String domain = "http://baas.hiwallet.pro/api/v1";//必选
+    private String domain = "";//必选
     private String version = "v1";
     private String charset = "utf-8";
     private Boolean enableLog = true;
