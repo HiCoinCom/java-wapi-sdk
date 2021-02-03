@@ -7,6 +7,9 @@ import com.githup.hicoincom.api.impl.WithdrawService;
 import com.githup.hicoincom.crypto.DataCrypto;
 import com.githup.hicoincom.crypto.IDataCrypto;
 
+/**
+ * 工厂类
+ */
 public class WalletClientFactory {
     public static WalletClient CreateClient(WalletConfig cfg){
         DataCrypto crypto = new DataCrypto(cfg.getUserPrivateKey(), cfg.getWaasPublickKey());
