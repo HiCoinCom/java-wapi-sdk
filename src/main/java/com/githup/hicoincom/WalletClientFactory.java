@@ -9,6 +9,7 @@ import com.githup.hicoincom.crypto.IDataCrypto;
 
 /**
  * 工厂类, 初始化
+ * 
  */
 public class WalletClientFactory {
     public static WalletClient CreateClient(WalletConfig cfg){
