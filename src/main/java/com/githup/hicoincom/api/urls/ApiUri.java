@@ -1,7 +1,7 @@
 package com.githup.hicoincom.api.urls;
 
 /**
- * @author chainup zpz
+ * @author ZPZ
  */
 public enum ApiUri {
 
@@ -45,7 +45,7 @@ public enum ApiUri {
     private String value;
     private String method;
 
-    private ApiUri(String value, String method) {
+    ApiUri(String value, String method) {
         this.value = value;
         this.method = method;
     }

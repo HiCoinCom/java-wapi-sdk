@@ -15,7 +15,6 @@ import com.githup.hicoincom.exception.ArgsNullException;
  *
  * @author ZPZ
  * @version 1.0
- * @date 2021-01-28 14:31
  **/
 public class AddressRegisterServiceImpl extends BaseApi implements IAddressRegisterService {
     public AddressRegisterServiceImpl(WalletConfig cfg, IDataCrypto crypto) {

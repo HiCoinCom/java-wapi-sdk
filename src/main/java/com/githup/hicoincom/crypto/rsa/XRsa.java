@@ -96,12 +96,6 @@ public class XRsa {
         return keyPairMap;
     }
 
-    /**
-     * public key encryption
-     */
-    public String publicEncrypt(String data) {
-        return publicKeyEncrypt(data, publicKey);
-    }
 
     public static String publicEncrypt(String data, RSAPublicKey rsaPublicKey) {
         return publicKeyEncrypt(data, rsaPublicKey);
@@ -120,13 +114,6 @@ public class XRsa {
         }
     }
 
-    /**
-     * private key decryption
-     */
-    public String privateDecrypt(String data) {
-        return privateKeyDecrypt(data, privateKey, publicKey.getModulus());
-    }
-
     public static String privateDecrypt(String data, RSAPrivateKey rsaPrivateKey) {
         return privateKeyDecrypt(data, rsaPrivateKey, rsaPrivateKey.getModulus());
     }
@@ -141,13 +128,6 @@ public class XRsa {
         } catch (Exception e) {
             throw new RuntimeException("private key Encrypt Exception For data[" + data + "]", e);
         }
-    }
-
-    /**
-     * private key Encrypt
-     */
-    public String privateEncrypt(String data) {
-        return privateKeyEncrypt(data, privateKey, publicKey.getModulus());
     }
 
     public static String privateEncrypt(String data, RSAPrivateKey rsaPrivateKey) {
@@ -167,13 +147,6 @@ public class XRsa {
         }
     }
 
-    /**
-     * public key decryption
-     */
-    public String publicDecrypt(String data) {
-        return publicKeyDecrypt(data, publicKey);
-    }
-
     public static String publicDecrypt(String data, RSAPublicKey rsaPublicKey) {
         return publicKeyDecrypt(data, rsaPublicKey);
     }
@@ -191,13 +164,6 @@ public class XRsa {
         }
     }
 
-    /**
-     * sign with privateKey
-     */
-    public String sign(String data) {
-        return getSign(data, privateKey);
-    }
-
     public static String sign(String data, RSAPrivateKey privateKey) {
         return getSign(data, privateKey);
     }
@@ -213,13 +179,6 @@ public class XRsa {
         } catch (Exception e) {
             throw new RuntimeException("sign with privateKey Exception for data[" + data + "]", e);
         }
-    }
-
-    /**
-     * verify sign with  publicKey
-     */
-    public boolean verify(String data, String sign) {
-        return verifySign(data, sign, publicKey);
     }
 
     public static boolean verify(String data, String sign, RSAPublicKey rsaPublicKey) {

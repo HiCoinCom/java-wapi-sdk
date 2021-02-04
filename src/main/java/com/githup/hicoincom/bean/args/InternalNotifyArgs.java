@@ -6,10 +6,10 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 
 /**
+ * 內部通知接口所需的参数
+ *
  * @author ZPZ
  * @version 1.0
- * 內部通知接口所需的参数
- * @date 2021-01-28 14:20
  **/
 public class InternalNotifyArgs extends BaseWalletArgs implements Serializable {
     private static final long serialVersionUID = 1L;

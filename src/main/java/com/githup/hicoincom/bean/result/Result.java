@@ -8,8 +8,9 @@ import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 
 /**
- * @author ZPZ
  * 通用返回结果处理类
+ *
+ * @author ZPZ
  */
 public class Result<T> implements Serializable {
     private static final long serialVersionUID = 1L;

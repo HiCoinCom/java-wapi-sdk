@@ -14,10 +14,10 @@ import com.githup.hicoincom.exception.ArgsNullException;
 import org.apache.commons.lang3.StringUtils;
 
 /**
+ * implements for IWithdrawService
+ *
  * @author ZPZ
  * @version 1.0
- * implements for IWithdrawService
- * @date 2021-01-29 19:40
  **/
 public class WithdrawServiceImpl extends BaseApi implements IWithdrawService {
     public WithdrawServiceImpl(WalletConfig cfg, IDataCrypto crypto) {

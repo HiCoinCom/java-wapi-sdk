@@ -53,7 +53,7 @@ public class BaseApi {
      * @param uri   请求地址，
      * @param args  入参
      * @param clazz 返回值类型
-     * @return T
+     * @return T 传入的泛型类型
      * @author ZPZ
      */
     protected <T> T invoke(ApiUri uri, BaseWalletArgs args, Class<T> clazz) {

@@ -7,10 +7,10 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
+ * 提币返回结果
+ *
  * @author ZPZ
  * @version 1.0
- * 提币返回结果
- * @date 2021-01-28 14:22
  **/
 public class WithdrawConsumeResult extends Result<List<WithdrawConsumeInfo>> implements Serializable {
     private static final long serialVersionUID = 1L;

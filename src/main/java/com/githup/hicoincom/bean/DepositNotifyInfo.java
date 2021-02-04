@@ -5,10 +5,10 @@ import com.alibaba.fastjson.annotation.JSONField;
 import java.io.Serializable;
 
 /**
+ * 充值通知結果返回
+ *
  * @author ZPZ
  * @version 1.0
- * 充值通知結果返回
- * @date 2021-01-29 17:57
  **/
 public class DepositNotifyInfo implements Serializable {
     private static final long serialVersionUID = 1L;

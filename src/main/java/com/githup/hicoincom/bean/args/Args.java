@@ -7,6 +7,9 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * @author ZPZ
+ */
 public class Args implements Serializable {
     private static final long serialVersionUID = 1L;
 
@@ -59,7 +62,7 @@ public class Args implements Serializable {
     }
 
     public Map<String, String> toMap(){
-        Map<String, String> map = new HashMap<String, String>();
+        Map<String, String> map = new HashMap<String, String>(8);
         map.put("app_id", this.appId);
         map.put("data",     this.data);
         map.put("sign",     this.sign);

@@ -1,10 +1,25 @@
 package com.githup.hicoincom;
 
+/**
+ * @author ZPZ
+ */
 public class WalletConfig {
-    private String appId;//必选
-    private String userPrivateKey;//必选
-    private String waasPublickKey;//必选
-    private String domain = "";//必选
+    /**
+    * 商户 APP id ,必选参数
+    */
+    private String appId;
+    /**
+     * 用户私钥 ,必选参数
+     */
+    private String userPrivateKey;
+    /**
+     * 钱包服务公钥 ,必选参数
+     */
+    private String waasPublickKey;
+    /**
+     * 钱包服务地址 ,必选参数
+     */
+    private String domain = "";
     private String version = "v1";
     private String charset = "utf-8";
     private Boolean enableLog = true;

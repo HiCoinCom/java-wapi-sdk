@@ -7,10 +7,10 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 
 /**
+ * 提币返回值
+ *
  * @author ZPZ
  * @version 1.0
- * 提币返回值
- * @date 2021-01-28 14:20
  **/
 public class WithdrawConsumeInfo extends BaseWalletArgs implements Serializable {
     private static final long serialVersionUID = 1L;

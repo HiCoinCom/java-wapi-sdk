@@ -6,10 +6,10 @@ import com.githup.hicoincom.bean.result.DepositNotifyResult;
 import com.githup.hicoincom.bean.result.SimpleResult;
 
 /**
+ * 通知服务，包括充值通知和内部通知
+ *
  * @author ZPZ
  * @version 1.0
- * 通知服务，包括充值通知和内部通知
- * @date 2021-01-29 17:42
  **/
 public interface IDepositNotifyService {
     /**
@@ -17,16 +17,14 @@ public interface IDepositNotifyService {
      *
      * @param args 充值信息
      * @return com.githup.hicoinsdk.bean.result.DepositNotifyResult
-     * @author ZPZ
      */
     DepositNotifyResult depositNotify(DepositArgs args);
 
     /**
      * 内部通知
      *
-     * @param args
+     * @param args 通知参数
      * @return com.githup.hicoinsdk.bean.result.SimpleResult
-     * @author ZPZ
      */
     SimpleResult internalNotify(InternalNotifyArgs args);
 }

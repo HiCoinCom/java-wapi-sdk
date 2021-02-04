@@ -2,6 +2,9 @@ package com.githup.hicoincom.bean.args;
 
 import com.alibaba.fastjson.JSONObject;
 
+/**
+ * @author ZPZ
+ */
 public class BaseWalletArgs {
     protected String symbol;
 

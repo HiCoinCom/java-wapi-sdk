@@ -6,10 +6,10 @@ import com.githup.hicoincom.bean.result.SimpleResult;
 import com.githup.hicoincom.bean.result.WithdrawConsumeResult;
 
 /**
+ * 提币相关接口
+ *
  * @author ZPZ
  * @version 1.0
- * 提币相关接口
- * @date 2021-01-29 19:10
  **/
 public interface IWithdrawService {
     /**
@@ -17,7 +17,6 @@ public interface IWithdrawService {
      *
      * @param symbol 币种信息
      * @return com.githup.hicoinsdk.bean.result.SimpleResult
-     * @author ZPZ
      */
     WithdrawConsumeResult withdrawConsume(String symbol);
 
@@ -26,16 +25,14 @@ public interface IWithdrawService {
      *
      * @param args 提币入参信息
      * @return com.githup.hicoinsdk.bean.result.WithdrawConsumeResult
-     * @author ZPZ
      */
     SimpleResult withdrawNotify(WithdrawNotifyArgs args);
 
     /**
      * 提币打回接口
      *
-     * @param args 入参信息
+     * @param args 提币打回入参信息
      * @return com.githup.hicoinsdk.bean.result.SimpleResult
-     * @author ZPZ
      */
     SimpleResult withdrawCancel(WithdrawCancelArgs args);
 }

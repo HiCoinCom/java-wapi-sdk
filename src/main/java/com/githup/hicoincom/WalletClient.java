@@ -6,8 +6,9 @@ import com.githup.hicoincom.api.IDepositNotifyService;
 import com.githup.hicoincom.api.IWithdrawService;
 
 /**
- * @author ZPZ
  * 封装所有可以调用的服务
+ *
+ * @author ZPZ
  */
 public class WalletClient {
 
