@@ -16,6 +16,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 
+/**
+ * @author ZPZ
+ */
 public class XRsa {
     public static final String CHARSET = "UTF-8";
     public static final String RSA_ALGORITHM = "RSA";
@@ -35,7 +38,7 @@ public class XRsa {
             PKCS8EncodedKeySpec pkcs8KeySpec = new PKCS8EncodedKeySpec(Base64.decodeBase64(privateKey));
             this.privateKey = (RSAPrivateKey) keyFactory.generatePrivate(pkcs8KeySpec);
         } catch (Exception e) {
-            throw new RuntimeException("不支持的密钥: ", e);
+            throw new RuntimeException("unsupported key: ", e);
         }
     }
 
@@ -46,7 +49,7 @@ public class XRsa {
             X509EncodedKeySpec x509KeySpec = new X509EncodedKeySpec(Base64.decodeBase64(publicKey));
             return (RSAPublicKey) keyFactory.generatePublic(x509KeySpec);
         } catch (Exception e) {
-            throw new RuntimeException("getRSAPublicKey,不支持的密钥: ", e);
+            throw new RuntimeException("getRSAPublicKey,unsupported key: ", e);
         }
     }
 
@@ -57,7 +60,7 @@ public class XRsa {
             PKCS8EncodedKeySpec pkcs8KeySpec = new PKCS8EncodedKeySpec(Base64.decodeBase64(privateKey));
             return (RSAPrivateKey) keyFactory.generatePrivate(pkcs8KeySpec);
         } catch (Exception e) {
-            throw new RuntimeException("getRSAPrivateKey,不支持的密钥: ", e);
+            throw new RuntimeException("getRSAPrivateKey,unsupported key: ", e);
         }
     }
 
@@ -70,7 +73,7 @@ public class XRsa {
             kpg = KeyPairGenerator.getInstance(RSA_ALGORITHM);
         } catch (NoSuchAlgorithmException e) {
             throw new IllegalArgumentException("No such algorithm -> [" +
-                RSA_ALGORITHM + "]");
+                    RSA_ALGORITHM + "]");
         }
 
         // 初始化KeyPairGenerator对象,不要被initialize()源码表面上欺骗,其实这里声明的size是生效的
@@ -86,7 +89,7 @@ public class XRsa {
         // 得到私钥
         Key privateKey = keyPair.getPrivate();
         String privateKeyStr = Base64.encodeBase64URLSafeString(privateKey.getEncoded());
-        Map<String, String> keyPairMap = new HashMap<>();
+        Map<String, String> keyPairMap = new HashMap<>(8);
         keyPairMap.put("publicKey", publicKeyStr);
         keyPairMap.put("privateKey", privateKeyStr);
 
@@ -94,11 +97,12 @@ public class XRsa {
     }
 
     /**
-     * 公钥加密
+     * public key encryption
      */
     public String publicEncrypt(String data) {
         return publicKeyEncrypt(data, publicKey);
     }
+
     public static String publicEncrypt(String data, RSAPublicKey rsaPublicKey) {
         return publicKeyEncrypt(data, rsaPublicKey);
     }
@@ -112,16 +116,17 @@ public class XRsa {
                     Cipher.ENCRYPT_MODE, data.getBytes(CHARSET),
                     rsaPublicKey.getModulus().bitLength()));
         } catch (Exception e) {
-            throw new RuntimeException("公钥加密字符串[" + data + "]时遇到异常", e);
+            throw new RuntimeException("public key Encrypt Exception For data [" + data + "]", e);
         }
     }
 
     /**
-     * 私钥解密
+     * private key decryption
      */
     public String privateDecrypt(String data) {
         return privateKeyDecrypt(data, privateKey, publicKey.getModulus());
     }
+
     public static String privateDecrypt(String data, RSAPrivateKey rsaPrivateKey) {
         return privateKeyDecrypt(data, rsaPrivateKey, rsaPrivateKey.getModulus());
     }
@@ -134,16 +139,17 @@ public class XRsa {
             return new String(rsaSplitCodec(cipher, Cipher.DECRYPT_MODE, Base64.decodeBase64(data),
                     modulus.bitLength()), CHARSET);
         } catch (Exception e) {
-            throw new RuntimeException("私钥解密字符串[" + data + "]时遇到异常", e);
+            throw new RuntimeException("private key Encrypt Exception For data[" + data + "]", e);
         }
     }
 
     /**
-     * 私钥加密
+     * private key Encrypt
      */
     public String privateEncrypt(String data) {
         return privateKeyEncrypt(data, privateKey, publicKey.getModulus());
     }
+
     public static String privateEncrypt(String data, RSAPrivateKey rsaPrivateKey) {
         return privateKeyEncrypt(data, rsaPrivateKey, rsaPrivateKey.getModulus());
     }
@@ -157,16 +163,17 @@ public class XRsa {
                     Cipher.ENCRYPT_MODE, data.getBytes(CHARSET),
                     modulus.bitLength()));
         } catch (Exception e) {
-            throw new RuntimeException("私钥加密字符串[" + data + "]时遇到异常", e);
+            throw new RuntimeException("private key Encrypt Exception For data[" + data + "]", e);
         }
     }
 
     /**
-     * 公钥解密
+     * public key decryption
      */
     public String publicDecrypt(String data) {
         return publicKeyDecrypt(data, publicKey);
     }
+
     public static String publicDecrypt(String data, RSAPublicKey rsaPublicKey) {
         return publicKeyDecrypt(data, rsaPublicKey);
     }
@@ -180,12 +187,12 @@ public class XRsa {
                     Base64.decodeBase64(data),
                     rsaPublicKey.getModulus().bitLength()), CHARSET);
         } catch (Exception e) {
-            throw new RuntimeException("公钥解密字符串[" + data + "]时遇到异常", e);
+            throw new RuntimeException("public key Encrypt Exception For data[" + data + "]", e);
         }
     }
 
     /**
-     * 私钥签名
+     * sign with privateKey
      */
     public String sign(String data) {
         return getSign(data, privateKey);
@@ -204,12 +211,12 @@ public class XRsa {
 
             return Base64.encodeBase64URLSafeString(signature.sign());
         } catch (Exception e) {
-            throw new RuntimeException("私钥签名字符串[" + data + "]时遇到异常", e);
+            throw new RuntimeException("sign with privateKey Exception for data[" + data + "]", e);
         }
     }
 
     /**
-     * 公钥验签，验证sign
+     * verify sign with  publicKey
      */
     public boolean verify(String data, String sign) {
         return verifySign(data, sign, publicKey);
@@ -228,15 +235,15 @@ public class XRsa {
 
             return signature.verify(Base64.decodeBase64(sign));
         } catch (Exception e) {
-            throw new RuntimeException("公钥验签字符串[" + data + "]时遇到异常", e);
+            throw new RuntimeException("verify sign with  publicKey Exception for data[" + data + "]", e);
         }
     }
 
     /**
-     * 分段加解密
+     * Segmented encryption and decryption
      */
     private static byte[] rsaSplitCodec(Cipher cipher, int opmode,
-        byte[] datas, int keySize) {
+                                        byte[] datas, int keySize) {
         int maxBlock = 0;
 
         if (opmode == Cipher.DECRYPT_MODE) {
@@ -263,18 +270,17 @@ public class XRsa {
                 offSet = i * maxBlock;
             }
         } catch (Exception e) {
-            throw new RuntimeException("加解密阀值为[" + maxBlock + "]的数据时发生异常", e);
+            throw new RuntimeException("An exception occurred while dealing with[" + maxBlock + "]", e);
         }
 
         byte[] resultDatas = out.toByteArray();
-        if(out!=null){
+        if (out != null) {
             try {
                 out.close();
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
-        //IOUtils.closeQuietly(out);
 
         return resultDatas;
     }
@@ -288,29 +294,29 @@ public class XRsa {
             RSAPrivateKey rsaPrivateKey = XRsa.getRSAPrivateKey(privateKey);
 
 
-            String json = "{\"name\" : \"春江潮水连海平，海上明月共潮生\"}";
+            String json = "{\"name\" : \"This is a world full of challenges!\"}";
 
-            // 私钥加密得到sign
+            // get sign with private key
             String sign = XRsa.sign(json, rsaPrivateKey);
             System.out.println("sign:" + sign);
             boolean b = XRsa.verifySign(json, sign, rsaPublicKey);
-            System.out.println("验证签名:" + b);
+            System.out.println("verify sign:" + b);
 
 
             String en = XRsa.publicEncrypt(json, rsaPublicKey);
 
             String de = XRsa.privateDecrypt(en, rsaPrivateKey);
 
-            System.out.println("公钥(public)加密,私钥(private)解密---------");
-            System.out.println("公钥加密json数据:" + en);
-            System.out.println("私钥解密:" + de);
+            System.out.println("public key encrypt,private key decrypt---------");
+            System.out.println("public key encrypt json data:" + en);
+            System.out.println("private key decrypt:" + de);
 
             en = XRsa.privateEncrypt(json, rsaPrivateKey);
-            de = XRsa.publicDecrypt(en, rsaPublicKey) ;
+            de = XRsa.publicDecrypt(en, rsaPublicKey);
 
-            System.out.println("私钥(private)加密，公钥(public)解密---------");
-            System.out.println("私钥加密json数据:" + en);
-            System.out.println("公钥解密:" + de);
+            System.out.println("private key encrypt,public key decrypt---------");
+            System.out.println("private key encrypt json data:" + en);
+            System.out.println("public  key decrypt:" + de);
 
             System.out.println("--------------------------------------------------------------------------------");
 

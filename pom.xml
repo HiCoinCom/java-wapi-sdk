@@ -27,7 +27,7 @@
         </developer>
     </developers>
     <scm>
-        <url></url>
+        <url>https://github.com/HiCoinCom/java-wapi-sdk</url>
     </scm>
 
     <dependencies>
@@ -71,7 +71,7 @@
     </dependencies>
 
     <build>
-        <finalName>waas-sdk</finalName>
+        <finalName>wapi-sdk</finalName>
         <defaultGoal>compile</defaultGoal>
         <plugins>
             <plugin>

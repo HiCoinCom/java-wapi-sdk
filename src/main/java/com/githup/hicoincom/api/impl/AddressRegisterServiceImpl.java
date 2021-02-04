@@ -11,13 +11,14 @@ import com.githup.hicoincom.crypto.IDataCrypto;
 import com.githup.hicoincom.exception.ArgsNullException;
 
 /**
- * @Description: 地址注册接口的实现
- * @Author: ZPZ
- * @Version: 1.0
- * @Date: 2021-01-28 14:31
+ * implements for IAddressRegisterService
+ *
+ * @author ZPZ
+ * @version 1.0
+ * @date 2021-01-28 14:31
  **/
-public class AddressRegisterService extends BaseApi implements IAddressRegisterService {
-    public AddressRegisterService(WalletConfig cfg, IDataCrypto crypto) {
+public class AddressRegisterServiceImpl extends BaseApi implements IAddressRegisterService {
+    public AddressRegisterServiceImpl(WalletConfig cfg, IDataCrypto crypto) {
         super(cfg, crypto);
     }
 
@@ -30,7 +31,7 @@ public class AddressRegisterService extends BaseApi implements IAddressRegisterS
     }
 
     @Override
-    public AddressCountInfoResult checkAailable(String symbol) {
+    public AddressCountInfoResult checkAvailable(String symbol) {
         AddressInfoArgs args = new AddressInfoArgs();
         args.setSymbol(symbol);
         return this.invoke(ApiUri.CHECK_AVAILABLE_ADDRESS, args, AddressCountInfoResult.class);

@@ -12,13 +12,13 @@ import com.githup.hicoincom.crypto.IDataCrypto;
 import com.githup.hicoincom.exception.ArgsNullException;
 
 /**
- * @Description: 充值通知服务实现类
- * @Author: ZPZ
- * @Version: 1.0
- * @Date: 2021-01-29 18:54
+ * @author ZPZ
+ * @version 1.0
+ * implements for IDepositNotifyService
+ * @date 2021-01-29 18:54
  **/
-public class DepositNotifyService extends BaseApi implements IDepositNotifyService {
-    public DepositNotifyService(WalletConfig cfg, IDataCrypto crypto) {
+public class DepositNotifyServiceImpl extends BaseApi implements IDepositNotifyService {
+    public DepositNotifyServiceImpl(WalletConfig cfg, IDataCrypto crypto) {
         super(cfg, crypto);
     }
 

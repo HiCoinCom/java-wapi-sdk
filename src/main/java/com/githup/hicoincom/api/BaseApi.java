@@ -12,11 +12,16 @@ import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * @author ZPZ
+ */
 public class BaseApi {
     protected static final Logger logger = LoggerFactory.getLogger(BaseApi.class);
 
     protected IDataCrypto dataCrypto;
     protected WalletConfig cfg;
+    private final String GET = "get";
+    private final String dataField = "data";
 
     public BaseApi() {
     }
@@ -43,10 +48,13 @@ public class BaseApi {
     }
 
     /**
-     * @Description: 请求baas 接口
-     * @Param: [uri, args, clazz] 请求地址，入参，返回值类型
-     * @Return: T
-     * @Author: ZPZ
+     * 请求baas 接口
+     *
+     * @param uri   请求地址，
+     * @param args  入参
+     * @param clazz 返回值类型
+     * @return T
+     * @author ZPZ
      */
     protected <T> T invoke(ApiUri uri, BaseWalletArgs args, Class<T> clazz) {
         T result = null;
@@ -67,10 +75,10 @@ public class BaseApi {
         //请求接口
         String url = String.format("%s/%s", this.cfg.getDomain(), uri.getValue());
         Args params = new Args(this.cfg.getAppId(), data, signData);
-        String resp = null;
-        if ("GET".equalsIgnoreCase(uri.getMethod())) {
+        String resp;
+        if (this.GET.equalsIgnoreCase(uri.getMethod())) {
             url += "?" + params.toString();
-            resp = HttpUtils.sendGet(url, "");//TODO
+            resp = HttpUtils.sendGet(url, "");
         } else {
             resp = HttpUtils.sendPost(url, JSONObject.toJSONString(params));
         }
@@ -83,7 +91,7 @@ public class BaseApi {
         }
 
         JSONObject jsonObject = JSONObject.parseObject(resp);
-        if (jsonObject == null || !jsonObject.containsKey("data") || StringUtils.isBlank(jsonObject.getString("data"))) {
+        if (jsonObject == null || !jsonObject.containsKey(dataField) || StringUtils.isBlank(jsonObject.getString(dataField))) {
             //接口返回数据未包含data字段
             logger.info("{} result does not find data field or data field is empty", uri.getValue());
             return JSONObject.parseObject(resp, clazz);
@@ -91,7 +99,7 @@ public class BaseApi {
 
         //解密响应数据
         String respRaw = this.dataCrypto.decode(jsonObject.getString("data"));
-        String respSign = jsonObject.getString("sign");//TODO
+        String respSign = jsonObject.getString("sign");
         this.info("{} decode result :{}", uri.getValue(), respRaw);
 
         //对签名进行验签

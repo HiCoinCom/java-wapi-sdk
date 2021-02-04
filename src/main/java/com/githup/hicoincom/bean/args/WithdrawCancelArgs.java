@@ -5,10 +5,10 @@ import com.alibaba.fastjson.annotation.JSONField;
 import java.io.Serializable;
 
 /**
- * @Description: 提币打回参数
- * @Author: ZPZ
- * @Version: 1.0
- * @Date: 2021-01-28 14:20
+ * @author ZPZ
+ * @version 1.0
+ * 提币打回参数
+ * @date 2021-01-28 14:20
  **/
 public class WithdrawCancelArgs extends BaseWalletArgs implements Serializable {
     private static final long serialVersionUID = 1L;

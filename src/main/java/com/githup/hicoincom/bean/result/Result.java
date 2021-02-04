@@ -8,14 +8,16 @@ import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 
 /**
- * @Description: 通用返回结果处理类
- * @Author: ZPZ
+ * @author ZPZ
+ * 通用返回结果处理类
  */
 public class Result<T> implements Serializable {
     private static final long serialVersionUID = 1L;
     private static final String SUCCESS_CODE = "0";
-
-    private String code;//0：成功；其它为失败
+    /**
+     * 0：成功；其它为失败
+     */
+    private String code;
     private String msg;
     private String sign;
     @JSONField(deserialize = false)
@@ -47,7 +49,7 @@ public class Result<T> implements Serializable {
     }
 
     public T getData() {
-        return this.data != null ? this.data : (T) JSONObject.parseObject(rawData, getGenericType());
+        return this.data != null ? this.data : JSONObject.parseObject(rawData, getGenericType());
     }
 
     public void setData(T data) {
@@ -55,7 +57,7 @@ public class Result<T> implements Serializable {
     }
 
     public void setData(String rawData) {
-        this.data = (T) JSONObject.parseObject(rawData, getGenericType());
+        this.data = JSONObject.parseObject(rawData, getGenericType());
     }
 
     public String toJson() {

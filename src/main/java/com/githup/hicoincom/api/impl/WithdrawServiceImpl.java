@@ -14,13 +14,13 @@ import com.githup.hicoincom.exception.ArgsNullException;
 import org.apache.commons.lang3.StringUtils;
 
 /**
- * @Description: 提币接口实现类
- * @Author: ZPZ
- * @Version: 1.0
- * @Date: 2021-01-29 19:40
+ * @author ZPZ
+ * @version 1.0
+ * implements for IWithdrawService
+ * @date 2021-01-29 19:40
  **/
-public class WithdrawService extends BaseApi implements IWithdrawService {
-    public WithdrawService(WalletConfig cfg, IDataCrypto crypto) {
+public class WithdrawServiceImpl extends BaseApi implements IWithdrawService {
+    public WithdrawServiceImpl(WalletConfig cfg, IDataCrypto crypto) {
         super(cfg, crypto);
     }
 
