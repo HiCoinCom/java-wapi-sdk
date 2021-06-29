@@ -2,6 +2,7 @@ package com.githup.hicoincom.util;
 
 import org.apache.http.Consts;
 import org.apache.http.HttpEntity;
+import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
@@ -22,7 +23,7 @@ public class HttpUtils {
     protected static final Logger log = LoggerFactory.getLogger(HttpUtils.class);
     private static final CloseableHttpClient HTTPCLIENT = HttpClients.createDefault();
     private static final String USER_AGENT = "Mozilla/5.0 (Windows NT 6.2; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.87 Safari/537.36";
-
+    private static int timeout = 30000;
     /**
      * 发送HttpGet请求
      *
@@ -32,10 +33,14 @@ public class HttpUtils {
     public static String sendGet(String url, String token) {
         String result = null;
         CloseableHttpResponse response = null;
+        log.debug("========= Call [{}] Start ==========", url);
         try {
             HttpGet httpGet = new HttpGet(url);
             httpGet.setHeader("User-Agent", USER_AGENT);
             httpGet.setHeader("Authorization", "token " + token);
+            RequestConfig config = RequestConfig.custom().setConnectionRequestTimeout(timeout)
+                    .setConnectTimeout(timeout).setSocketTimeout(timeout).build();
+            httpGet.setConfig(config);
             response = HTTPCLIENT.execute(httpGet);
             HttpEntity entity = response.getEntity();
             if (entity != null) {
@@ -54,6 +59,7 @@ public class HttpUtils {
             }
 
         }
+        log.debug("========= Call [{}] End ==========", url);
         return result;
     }
 
@@ -66,6 +72,7 @@ public class HttpUtils {
      * @return String response body
      */
     public static String sendPost(String url, String jsonStr) {
+        log.debug("========= Call [{}] Start ==========", url);
         String result = null;
         // 字符串编码
         StringEntity entity = new StringEntity(jsonStr, Consts.UTF_8);
@@ -77,13 +84,16 @@ public class HttpUtils {
         // 接收参数设置
         httpPost.setHeader("Accept", "application/json");
         httpPost.setEntity(entity);
+        RequestConfig config = RequestConfig.custom().setConnectionRequestTimeout(timeout)
+                .setConnectTimeout(timeout).setSocketTimeout(timeout).build();
+        httpPost.setConfig(config);
         CloseableHttpResponse response = null;
         try {
             response = HTTPCLIENT.execute(httpPost);
             HttpEntity httpEntity = response.getEntity();
             result = EntityUtils.toString(httpEntity);
         } catch (IOException e) {
-            log.error(e.getMessage());
+            log.error("HttpClient has exception! message: {}",e.getMessage());
         } finally {
             // 关闭CloseableHttpResponse
             if (response != null) {
@@ -94,6 +104,7 @@ public class HttpUtils {
                 }
             }
         }
+        log.debug("========= Call [{}] End ==========", url);
         return result;
     }
 

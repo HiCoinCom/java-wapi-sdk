@@ -5,6 +5,7 @@ import com.githup.hicoincom.WalletClientFactory;
 import com.githup.hicoincom.WalletConfig;
 import com.githup.hicoincom.bean.args.*;
 import com.githup.hicoincom.bean.result.*;
+import com.githup.hicoincom.util.HttpUtils;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -155,5 +156,8 @@ public class WapiSDKTest {
         System.out.println(test.getData().get(0).getSymbol());
     }
 
-
+    @Test
+    public void timeOutTest() throws Exception {
+        HttpUtils.sendPost("http://localhost:8088/addr/user_deposit_hash","");
+    }
 }
