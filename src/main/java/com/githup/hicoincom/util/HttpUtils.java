@@ -33,7 +33,6 @@ public class HttpUtils {
     public static String sendGet(String url, String token) {
         String result = null;
         CloseableHttpResponse response = null;
-        log.debug("========= Call [{}] Start ==========", url);
         try {
             HttpGet httpGet = new HttpGet(url);
             httpGet.setHeader("User-Agent", USER_AGENT);
@@ -59,7 +58,6 @@ public class HttpUtils {
             }
 
         }
-        log.debug("========= Call [{}] End ==========", url);
         return result;
     }
 
@@ -72,7 +70,6 @@ public class HttpUtils {
      * @return String response body
      */
     public static String sendPost(String url, String jsonStr) {
-        log.debug("========= Call [{}] Start ==========", url);
         String result = null;
         // 字符串编码
         StringEntity entity = new StringEntity(jsonStr, Consts.UTF_8);
@@ -104,7 +101,6 @@ public class HttpUtils {
                 }
             }
         }
-        log.debug("========= Call [{}] End ==========", url);
         return result;
     }
 
