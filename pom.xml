@@ -6,7 +6,7 @@
 
     <groupId>com.github.hicoincom</groupId>
     <artifactId>wapi-sdk</artifactId>
-    <version>1.0.1</version>
+    <version>1.0.2</version>
     <packaging>jar</packaging>
 
     <name>wapi-sdk</name>
@@ -47,7 +47,7 @@
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
-            <version>1.2.76</version>
+            <version>1.2.83</version>
         </dependency>
 
         <dependency>
