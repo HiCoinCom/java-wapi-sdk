@@ -13,7 +13,7 @@ maven project direct reference
 <dependency>
   <groupId>com.github.hicoincom</groupId>
   <artifactId>wapi-sdk</artifactId>
-  <version>1.0.1</version>
+  <version>1.0.3</version>
 </dependency>
 ```
 
