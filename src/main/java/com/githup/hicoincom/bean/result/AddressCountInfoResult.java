@@ -5,7 +5,7 @@ import com.githup.hicoincom.bean.AddressCountInfo;
 import java.io.Serializable;
 
 /**
- * 查询地址可用地址返回数量结果
+ * query the number of available address
  *
  * @author ZPZ
  * @version 1.0

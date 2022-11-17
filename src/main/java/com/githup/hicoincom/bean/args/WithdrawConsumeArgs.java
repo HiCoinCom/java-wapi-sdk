@@ -3,7 +3,7 @@ package com.githup.hicoincom.bean.args;
 import java.io.Serializable;
 
 /**
- * 获取提币列表参数
+ * obtain the parameters of the withdrawal list
  *
  * @author ZPZ
  * @version 1.0

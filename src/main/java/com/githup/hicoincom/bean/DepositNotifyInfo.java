@@ -5,7 +5,7 @@ import com.alibaba.fastjson.annotation.JSONField;
 import java.io.Serializable;
 
 /**
- * 充值通知結果返回
+ * deposit notification result returned
  *
  * @author ZPZ
  * @version 1.0

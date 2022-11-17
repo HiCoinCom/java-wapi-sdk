@@ -48,17 +48,17 @@ public class BaseApi {
     }
 
     /**
-     * 请求baas 接口
+     * request baas api
      *
-     * @param uri   请求地址，
-     * @param args  入参
-     * @param clazz 返回值类型
-     * @return T 传入的泛型类型
+     * @param uri   url，
+     * @param args  entering
+     * @param clazz return value type
+     * @return T Incoming generic type
      * @author ZPZ
      */
     protected <T> T invoke(ApiUri uri, BaseWalletArgs args, Class<T> clazz) {
         T result = null;
-        //加密参数
+        //encryption parameters
         String raw = args.toJson();
         this.info("request url:{}  raw args:{}", uri.getValue(), raw);
         String data = this.dataCrypto.encode(raw);
@@ -69,10 +69,10 @@ public class BaseApi {
             throw new CryptoException("data crypto return null");
         }
 
-        //对数据进行签名，并传递给被调用方
+        //Sign the data and pass it to the callee
         String signData = dataCrypto.sign(raw);
 
-        //请求接口
+        //request interface
         String url = String.format("%s/%s", this.cfg.getDomain(), uri.getValue());
         Args params = new Args(this.cfg.getAppId(), data, signData);
         String resp;
@@ -84,7 +84,7 @@ public class BaseApi {
         }
 
         this.info("{} raw result:{}", uri.getValue(), resp);
-        //接口返回数据为空
+        //The interface return data is empty
         if (StringUtils.isBlank(resp)) {
             logger.error("{} api return null", uri.getValue());
             return null;
@@ -92,17 +92,17 @@ public class BaseApi {
 
         JSONObject jsonObject = JSONObject.parseObject(resp);
         if (jsonObject == null || !jsonObject.containsKey(dataField) || StringUtils.isBlank(jsonObject.getString(dataField))) {
-            //接口返回数据未包含data字段
+            //The data returned by the interface does not contain the data field
             logger.info("{} result does not find data field or data field is empty", uri.getValue());
             return JSONObject.parseObject(resp, clazz);
         }
 
-        //解密响应数据
+        //Decrypt response data
         String respRaw = this.dataCrypto.decode(jsonObject.getString("data"));
         String respSign = jsonObject.getString("sign");
         this.info("{} decode result :{}", uri.getValue(), respRaw);
 
-        //对签名进行验签
+        //Verify the signature
         if (!StringUtils.isBlank(respRaw) && dataCrypto.checkSign(respRaw, respSign)) {
             jsonObject.put("rawData", respRaw);
             result = jsonObject.toJavaObject(clazz);

@@ -8,7 +8,7 @@ import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 
 /**
- * 通用返回结果处理类
+ * common returns in Process class(which is a waas defined data type)
  *
  * @author ZPZ
  */
@@ -16,7 +16,7 @@ public class Result<T> implements Serializable {
     private static final long serialVersionUID = 1L;
     private static final String SUCCESS_CODE = "0";
     /**
-     * 0：成功；其它为失败
+     * 0：success; other failures
      */
     private String code;
     private String msg;

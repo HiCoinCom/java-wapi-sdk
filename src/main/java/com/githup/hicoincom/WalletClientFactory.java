@@ -8,7 +8,7 @@ import com.githup.hicoincom.crypto.DataCrypto;
 import com.githup.hicoincom.crypto.IDataCrypto;
 
 /**
- * 工厂类, 初始化
+ * factory class, initialization
  *
  * @author ZPZ
  */

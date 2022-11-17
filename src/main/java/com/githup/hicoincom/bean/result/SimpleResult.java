@@ -5,7 +5,7 @@ import com.githup.hicoincom.bean.NullData;
 import java.io.Serializable;
 
 /**
- * 调用返回结果，返回的data属性无数据
+ * No data returned, and used as a placeholder
  *
  * @author ZPZ
  * @version 1.0

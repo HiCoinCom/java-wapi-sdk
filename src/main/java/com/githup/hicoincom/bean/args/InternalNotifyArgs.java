@@ -6,7 +6,7 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 
 /**
- * 內部通知接口所需的参数
+ * Parameters required by the internal notification interface
  *
  * @author ZPZ
  * @version 1.0

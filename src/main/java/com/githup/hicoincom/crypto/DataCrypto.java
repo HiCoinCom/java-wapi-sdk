@@ -8,11 +8,11 @@ import com.githup.hicoincom.crypto.rsa.XRsa;
  */
 public class DataCrypto implements IDataCrypto {
     /**
-     * 加密数据的私钥
+     * private key to encrypt data
      **/
     String privateKey;
     /**
-     * 解密数据的公钥
+     * public key to decrypt data
      **/
     String publicKey;
 

@@ -25,10 +25,10 @@ public class HttpUtils {
     private static final String USER_AGENT = "Mozilla/5.0 (Windows NT 6.2; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.87 Safari/537.36";
     private static int timeout = 30000;
     /**
-     * 发送HttpGet请求
+     * Send Http Get request
      *
-     * @param url 请求地址
-     * @return 返回字符串
+     * @param url request address
+     * @return return string
      */
     public static String sendGet(String url, String token) {
         String result = null;
@@ -63,22 +63,22 @@ public class HttpUtils {
 
 
     /**
-     * 发送HttpPost请求，参数为json字符串
+     * Send Http Post request, parameter is json string
      *
-     * @param url     请求地址
+     * @param url     request address
      * @param jsonStr request body
      * @return String response body
      */
     public static String sendPost(String url, String jsonStr) {
         String result = null;
-        // 字符串编码
+        // string encoding
         StringEntity entity = new StringEntity(jsonStr, Consts.UTF_8);
-        // 设置content-type
+        //set content-type
         entity.setContentType("application/json");
         HttpPost httpPost = new HttpPost(url);
-        // 防止被当成攻击添加的
+        // To prevent being added as an attack
         httpPost.setHeader("User-Agent", USER_AGENT);
-        // 接收参数设置
+        //Receive parameter settings
         httpPost.setHeader("Accept", "application/json");
         httpPost.setEntity(entity);
         RequestConfig config = RequestConfig.custom().setConnectionRequestTimeout(timeout)
@@ -92,7 +92,7 @@ public class HttpUtils {
         } catch (IOException e) {
             log.error("HttpClient has exception! message: {}",e.getMessage());
         } finally {
-            // 关闭CloseableHttpResponse
+            // close CloseableHttpResponse
             if (response != null) {
                 try {
                     response.close();

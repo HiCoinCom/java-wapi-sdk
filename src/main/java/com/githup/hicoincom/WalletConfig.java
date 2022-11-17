@@ -5,19 +5,19 @@ package com.githup.hicoincom;
  */
 public class WalletConfig {
     /**
-    * 商户 APP id ,必选参数
+    * Merchant APP id , required parameter
     */
     private String appId;
     /**
-     * 用户私钥 ,必选参数
+     * User private key, required parameter
      */
     private String userPrivateKey;
     /**
-     * 钱包服务公钥 ,必选参数
+     * Wallet service public key, required parameter
      */
     private String waasPublickKey;
     /**
-     * 钱包服务地址 ,必选参数
+     * Wallet service address, required parameter
      */
     private String domain = "";
     private String version = "v1";

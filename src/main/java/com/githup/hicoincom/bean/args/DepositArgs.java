@@ -6,7 +6,7 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 
 /**
- * 充值接口所需的参数
+ * Parameters required by the deposit interface
  *
  * @author ZPZ
  * @version 1.0

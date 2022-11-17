@@ -7,7 +7,7 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- * 提币返回结果
+ * Withdrawal result returned
  *
  * @author ZPZ
  * @version 1.0

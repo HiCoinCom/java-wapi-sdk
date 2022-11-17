@@ -3,7 +3,7 @@ package com.githup.hicoincom.bean;
 import java.io.Serializable;
 
 /**
- * 返回地址数量信息
+ * Returns the number of addresses
  *
  * @author ZPZ
  * @version 1.0

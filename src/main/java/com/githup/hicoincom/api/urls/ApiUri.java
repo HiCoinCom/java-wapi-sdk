@@ -6,37 +6,37 @@ package com.githup.hicoincom.api.urls;
 public enum ApiUri {
 
     /**
-     * 推送地址给平台，此地址用于分配给用户
+     * Push the address to the platform, this address is used to assign to the user
      */
     REGISTER_ADDRESS("address/register", "POST"),
 
     /**
-     * 推送的地址中还有多少可用地址
+     * How many addresses are available
      */
     CHECK_AVAILABLE_ADDRESS("address/available", "POST"),
 
     /**
-     * 充值通知调用接口
+     * Deposit notification interface
      */
     DEPOSIT_NOTIFY("deposit/notify", "POST"),
 
     /**
-     * 提币拉取接口
+     * Withdrawal records pull interface
      */
     WITHDRAW_CONSUME("withdraw/consume", "POST"),
 
     /**
-     * 提现通知调用接口
+     * Withdrawal notification interface
      */
     WITHDRAW_NOTIFY("withdraw/notify", "POST"),
 
     /**
-     * 内部通知调用接口
+     * Internal notification interface
      */
     INTERNAL_NOTIFY("internal/notify", "POST"),
 
     /**
-     * 提币打回接口
+     * Withdrawal rejection interface
      */
     WITHDRAW_CANCEL("withdraw/cancel", "POST"),
 

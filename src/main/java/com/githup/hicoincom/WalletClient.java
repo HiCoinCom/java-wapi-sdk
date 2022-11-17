@@ -6,7 +6,7 @@ import com.githup.hicoincom.api.IDepositNotifyService;
 import com.githup.hicoincom.api.IWithdrawService;
 
 /**
- * 封装所有可以调用的服务
+ * Encapsulates all callable services
  *
  * @author ZPZ
  */

@@ -3,7 +3,7 @@ package com.githup.hicoincom.bean.args;
 import java.io.Serializable;
 
 /**
- * 注册地址所需的参数
+ * Parameters required to register an address
  *
  * @author ZPZ
  * @version 1.0

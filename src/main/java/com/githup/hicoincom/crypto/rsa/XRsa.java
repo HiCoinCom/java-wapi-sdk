@@ -30,11 +30,11 @@ public class XRsa {
         try {
             KeyFactory keyFactory = KeyFactory.getInstance(RSA_ALGORITHM);
 
-            // 通过X509编码的Key指令获得公钥对象
+            // Obtain the public key object through the Key command encoded by X509
             X509EncodedKeySpec x509KeySpec = new X509EncodedKeySpec(Base64.decodeBase64(publicKey));
 
             this.publicKey = (RSAPublicKey) keyFactory.generatePublic(x509KeySpec);
-            // 通过PKCS#8编码的Key指令获得私钥对象
+            // Obtain a private key object through the PKCS 8 encoded Key command
             PKCS8EncodedKeySpec pkcs8KeySpec = new PKCS8EncodedKeySpec(Base64.decodeBase64(privateKey));
             this.privateKey = (RSAPrivateKey) keyFactory.generatePrivate(pkcs8KeySpec);
         } catch (Exception e) {
@@ -45,7 +45,7 @@ public class XRsa {
     public static RSAPublicKey getRSAPublicKey(String publicKey) {
         try {
             KeyFactory keyFactory = KeyFactory.getInstance(RSA_ALGORITHM);
-            // 通过X509编码的Key指令获得公钥对象
+            //Obtain the public key object through the Key command encoded by X509
             X509EncodedKeySpec x509KeySpec = new X509EncodedKeySpec(Base64.decodeBase64(publicKey));
             return (RSAPublicKey) keyFactory.generatePublic(x509KeySpec);
         } catch (Exception e) {
@@ -56,7 +56,7 @@ public class XRsa {
     public static RSAPrivateKey getRSAPrivateKey(String privateKey) {
         try {
             KeyFactory keyFactory = KeyFactory.getInstance(RSA_ALGORITHM);
-            // 通过PKCS#8编码的Key指令获得私钥对象
+            // Obtain a private key object through the PKCS 8 encoded Key command
             PKCS8EncodedKeySpec pkcs8KeySpec = new PKCS8EncodedKeySpec(Base64.decodeBase64(privateKey));
             return (RSAPrivateKey) keyFactory.generatePrivate(pkcs8KeySpec);
         } catch (Exception e) {
@@ -66,7 +66,7 @@ public class XRsa {
 
 
     public static Map<String, String> createKeys(int keySize) {
-        // 为RSA算法创建一个KeyPairGenerator对象
+        // Create a Key Pair Generator object for the RSA algorithm
         KeyPairGenerator kpg;
 
         try {
@@ -76,17 +76,17 @@ public class XRsa {
                     RSA_ALGORITHM + "]");
         }
 
-        // 初始化KeyPairGenerator对象,不要被initialize()源码表面上欺骗,其实这里声明的size是生效的
+        // Initialize the Key Pair Generator object, don't be deceived by the surface of the initialize() source code, in fact, the size declared here is valid
         kpg.initialize(keySize);
 
-        // 生成秘钥对
+        // generate key pair
         KeyPair keyPair = kpg.generateKeyPair();
 
-        // 得到公钥
+        // get the public key
         Key publicKey = keyPair.getPublic();
         String publicKeyStr = Base64.encodeBase64URLSafeString(publicKey.getEncoded());
 
-        // 得到私钥
+        // get private key
         Key privateKey = keyPair.getPrivate();
         String privateKeyStr = Base64.encodeBase64URLSafeString(privateKey.getEncoded());
         Map<String, String> keyPairMap = new HashMap<>(8);

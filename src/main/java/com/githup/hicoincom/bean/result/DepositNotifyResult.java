@@ -5,7 +5,7 @@ import com.githup.hicoincom.bean.DepositNotifyInfo;
 import java.io.Serializable;
 
 /**
- * 充值通知结果
+ * deposit notification result
  *
  * @author ZPZ
  * @version 1.0

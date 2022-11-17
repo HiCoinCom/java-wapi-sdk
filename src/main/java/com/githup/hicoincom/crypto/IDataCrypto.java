@@ -1,7 +1,7 @@
 package com.githup.hicoincom.crypto;
 
 /**
- * 对RSA工具的进一步地封装
+ * Further encapsulation of RSA tools
  *
  * @author ZPZ
  */

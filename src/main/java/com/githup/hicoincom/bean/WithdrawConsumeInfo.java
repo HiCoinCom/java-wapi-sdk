@@ -7,7 +7,7 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 
 /**
- * 提币返回值
+ * Withdrawal return value
  *
  * @author ZPZ
  * @version 1.0

@@ -5,7 +5,7 @@ import com.alibaba.fastjson.annotation.JSONField;
 import java.io.Serializable;
 
 /**
- * 提币打回参数
+ * Withdrawal parameters
  *
  * @author ZPZ
  * @version 1.0
